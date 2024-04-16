@@ -1,0 +1,16 @@
+Resources:
+  MyApplication:
+    Properties:
+      Description: My Elastic Beanstalk Application
+    Type: AWS::ElasticBeanstalk::Application
+  MyEnvironment:
+    Properties:
+      ApplicationName: MyApplication
+      Description: My Elastic Beanstalk Environment
+      OptionSettings:
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: InstanceType
+          Value: t2.nano
+      SolutionStackName: 64bit Amazon Linux 2023 v4.0.10 running Python 3.11
+    Type: AWS::ElasticBeanstalk::Environment
+
