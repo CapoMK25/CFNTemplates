@@ -1,0 +1,13 @@
+Parameters:
+  KeyName:
+    Default: main
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: String
+Resources:
+  MyEC2Instance:
+    Properties:
+      ImageId: ami-0f7204385566b32d0
+      InstanceType: t3.nano
+      KeyName: !Ref 'KeyName'
+    Type: AWS::EC2::Instance
+
