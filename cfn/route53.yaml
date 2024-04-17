@@ -1,0 +1,8 @@
+Resources:
+  MyHostedZone:
+    Properties:
+      HostedZoneConfig:
+        Comment: My first hosted zone on Route 53
+      Name: wheretolivehki.com
+    Type: AWS::Route53::HostedZone
+

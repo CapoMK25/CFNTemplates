@@ -1,31 +1,19 @@
-from troposphere import Template, Parameter, Ref, Output, route53
+from troposphere import Template, route53
 
 # Create a new CloudFormation template
 template = Template()
 
-# Define a parameter for the domain name
-domain_name_param = template.add_parameter(Parameter(
-    "DomainName",
-    Type="String",
-    Description="wheretolivehki.com"
-))
-
-# Define a Route 53 record set
-record_set = route53.RecordSetGroup(
-    "MyRecordSet",
-    HostedZoneId="",  # Specify the hosted zone ID
-    RecordSets=[
-        route53.RecordSet(
-            Name=Ref(domain_name_param),  # Use the domain name parameter
-            Type="A",
-            TTL="300",
-            ResourceRecords=["10.0.0.1"]  # Example IP address
-        )
-    ]
+# Define the hosted zone
+hosted_zone = route53.HostedZone(
+    "MyHostedZone",
+    Name="wheretolivehki.com",  # Replace with your domain name
+    HostedZoneConfig=route53.HostedZoneConfiguration(
+        Comment="My first hosted zone on Route 53"
+    )
 )
 
-# Add the record set to the template
-template.add_resource(record_set)
+# Add the hosted zone to the template
+template.add_resource(hosted_zone)
 
-# Output the CloudFormation template
+# Print the CloudFormation template
 print(template.to_yaml())
