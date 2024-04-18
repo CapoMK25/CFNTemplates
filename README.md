@@ -1,2 +1,2 @@
 # CFNTemplates
-This repo will contain all CloudFormation templates for an IaC setup on AWS for the regional-map-2024 project.
+This repo will contain all CloudFormation templates for all of my own projects. Currently it houses CloudFormation-readable troposphere templates for my portfolio and where to live hosts on EC2.
