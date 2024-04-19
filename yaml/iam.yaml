@@ -1,0 +1,6 @@
+Resources:
+  CapoMKAccessKey:
+    Properties:
+      UserName: CapoMK
+    Type: AWS::IAM::AccessKey
+

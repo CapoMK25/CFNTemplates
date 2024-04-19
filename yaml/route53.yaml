@@ -1,8 +1,17 @@
 Resources:
-  MyHostedZone:
+  Portfolio:
     Properties:
       HostedZoneConfig:
-        Comment: My first hosted zone on Route 53
-      Name: wheretolivehki.com
+        Comment: The hosted zone for the DNS name specified here.
+      Name: matiaskuismanen.ddns.net
     Type: AWS::Route53::HostedZone
+  RootRecord:
+    Properties:
+      HostedZoneName: matiaskuismanen.ddns.net.
+      Name: matiaskuismanen.ddns.net.
+      ResourceRecords:
+        - 18.192.182.207
+      TTL: '300'
+      Type: A
+    Type: AWS::Route53::RecordSet
 

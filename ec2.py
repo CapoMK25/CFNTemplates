@@ -22,9 +22,9 @@ ec2_instance = ec2.Instance(
 # Add the EC2 instance to the template
 template.add_resource(ec2_instance)
 
-# Define security group
-ssh_sg = ec2.SecurityGroup(
-    "SSHSecurityGroup",
+# Define security group (CentOS)
+centos_sg = ec2.SecurityGroup(
+    "CentOSSecurityGroup",
     GroupDescription="Allow SSH access from my Turkey IP",
     SecurityGroupIngress=[
         ec2.SecurityGroupRule(
@@ -33,14 +33,21 @@ ssh_sg = ec2.SecurityGroup(
             ToPort="22",
             CidrIp="185.117.123.142/32",  # Your IP address
         ),
+        # Add HTTP ingress rule to CentOS security group
+        ec2.SecurityGroupRule(
+            IpProtocol="tcp",
+            FromPort=80,
+            ToPort=80,
+            CidrIp="0.0.0.0/0",  # All IPs
+        ),
     ],
 )
 
 # Add the security group to the template
-template.add_resource(ssh_sg)
+template.add_resource(centos_sg)
 
 # Attach the security group to the EC2 instance
-ec2_instance.SecurityGroups = [Ref(ssh_sg)]
+ec2_instance.SecurityGroups = [Ref(centos_sg)]
 
 # Print the CloudFormation template
 print(template.to_yaml())

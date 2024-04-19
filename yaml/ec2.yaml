@@ -4,15 +4,7 @@ Parameters:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
     Type: String
 Resources:
-  PortfolioHost:
-    Properties:
-      ImageId: ami-0afcbcee3dfbce929
-      InstanceType: t3.nano
-      KeyName: !Ref 'KeyName'
-      SecurityGroups:
-        - !Ref 'SSHSecurityGroup'
-    Type: AWS::EC2::Instance
-  SSHSecurityGroup:
+  CentOSSecurityGroup:
     Properties:
       GroupDescription: Allow SSH access from my Turkey IP
       SecurityGroupIngress:
@@ -20,5 +12,17 @@ Resources:
           FromPort: '22'
           IpProtocol: tcp
           ToPort: '22'
+        - CidrIp: '0.0.0.0/0'
+          FromPort: 80
+          IpProtocol: tcp
+          ToPort: 80
     Type: AWS::EC2::SecurityGroup
+  PortfolioHost:
+    Properties:
+      ImageId: ami-0afcbcee3dfbce929
+      InstanceType: t3.nano
+      KeyName: !Ref 'KeyName'
+      SecurityGroups:
+        - !Ref 'CentOSSecurityGroup'
+    Type: AWS::EC2::Instance
 
