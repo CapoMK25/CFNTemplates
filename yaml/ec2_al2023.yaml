@@ -1,0 +1,28 @@
+Parameters:
+  KeyName:
+    Default: main
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: String
+Resources:
+  AmazonLinuxSecurityGroup:
+    Properties:
+      GroupDescription: Allow SSH access from my Turkey IP
+      SecurityGroupIngress:
+        - CidrIp: 185.117.123.142/32
+          FromPort: '22'
+          IpProtocol: tcp
+          ToPort: '22'
+        - CidrIp: 185.117.123.142/32
+          FromPort: 80
+          IpProtocol: tcp
+          ToPort: 80
+    Type: AWS::EC2::SecurityGroup
+  WhereToLiveHost:
+    Properties:
+      ImageId: ami-0f673487d7e5f89ca
+      InstanceType: t3.nano
+      KeyName: !Ref 'KeyName'
+      SecurityGroups:
+        - !Ref 'AmazonLinuxSecurityGroup'
+    Type: AWS::EC2::Instance
+
