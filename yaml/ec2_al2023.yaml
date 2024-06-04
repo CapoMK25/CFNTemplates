@@ -12,7 +12,7 @@ Resources:
           FromPort: '22'
           IpProtocol: tcp
           ToPort: '22'
-        - CidrIp: 176.72.100.93/32
+        - CidrIp: '0.0.0.0/0'
           FromPort: 80
           IpProtocol: tcp
           ToPort: 80

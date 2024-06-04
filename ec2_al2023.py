@@ -38,7 +38,7 @@ linux_sg = ec2.SecurityGroup(
             IpProtocol="tcp",
             FromPort=80,
             ToPort=80,
-            CidrIp="176.72.100.93/32",  # My IP
+            CidrIp="0.0.0.0/0",  # My IP
         ),
     ],
 )
