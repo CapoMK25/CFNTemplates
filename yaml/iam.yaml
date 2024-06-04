@@ -1,6 +1,6 @@
 Resources:
-  CapoMKAccessKey:
+  MatiasAccessKey:
     Properties:
-      UserName: CapoMK
+      UserName: Matias
     Type: AWS::IAM::AccessKey
 
