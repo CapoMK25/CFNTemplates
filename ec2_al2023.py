@@ -31,7 +31,7 @@ linux_sg = ec2.SecurityGroup(
             IpProtocol="tcp",
             FromPort="22",
             ToPort="22",
-            CidrIp="176.72.100.93/32",  # Your IP address
+            CidrIp="217.140.210.200/32",  # Your IP address
         ),
         # Add HTTP ingress rule to Amazon Linux security group
         ec2.SecurityGroupRule(
